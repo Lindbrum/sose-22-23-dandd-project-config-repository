@@ -29,6 +29,7 @@ spring:
           - RewritePath=/api/hotels(?<segment>/?), /hotels$\{segment}
 
 management:
+  port: 8080
   endpoints:
     web:
       exposure:
