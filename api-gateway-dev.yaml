@@ -1,0 +1,43 @@
+# Port of the gateway
+server:
+  port: 8080
+
+# Gateway configuration
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: boats_route
+          uri: http://localhost:8090
+          predicates:
+          - Path=/api/boats/**
+          filters:
+          - RewritePath=/api/boats(?<segment>), /boats$\{segment}
+
+        - id: flights_route
+          uri: http://localhost:8091
+          predicates:
+          - Path=/api/flights/**
+          filters:
+          - RewritePath=/api/flights(?<segment>/?), /flights$\{segment}
+
+        - id: hotels_route
+          uri: http://localhost:8092
+          predicates:
+          - Path=/api/hotels/**
+          filters:
+          - RewritePath=/api/hotels(?<segment>/?), /hotels$\{segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,refresh
+#logging:
+#  level:
+#    reactor:
+#      netty: INFO
+#    org:
+#      springframework:
+#        cloud:
+#          gateway: TRACE
