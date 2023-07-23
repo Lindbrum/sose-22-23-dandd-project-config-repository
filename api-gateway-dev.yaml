@@ -32,17 +32,17 @@ spring:
         - id: boats_route
           uri: http://localhost:8090
           predicates:
-          - Path=/boats/docs/swagger-ui/**
+          - Path=/boats/docs/**
         
         - id: flights_swagger
           uri: http://localhost:8091
           predicates:
-          - Path=/flights/docs/swagger-ui/**
+          - Path=/flights/docs/**
         
         - id: hotels_swagger
           uri: http://localhost:8092
           predicates:
-          - Path=/hotels/docs/swagger-ui/**
+          - Path=/hotels/docs/**
 
 management:
   port: 8080
