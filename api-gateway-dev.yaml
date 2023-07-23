@@ -28,6 +28,22 @@ spring:
           filters:
           - RewritePath=/api/hotels(?<segment>/?), /hotels$\{segment}
 
+        # Swagger routes (needed due to the redirect applied by springdoc)
+        - id: boats_route
+          uri: http://localhost:8090
+          predicates:
+          - Path=/boats/swagger-ui/**
+        
+        - id: flights_swagger
+          uri: http://localhost:8091
+          predicates:
+          - Path=/flights/swagger-ui/**
+        
+        - id: hotels_swagger
+          uri: http://localhost:8092
+          predicates:
+          - Path=/hotels/swagger-ui/**
+
 management:
   port: 8080
   endpoints:
